@@ -1,6 +1,8 @@
 local util = require("modules.util")
 local ccutil = require("modules.ccutil")
 local CODE = require("code")
+local log = require("modules.log")
+local pkg = require("pkg")
 
 return function(args)
     rednet.open(config.side)
@@ -11,8 +13,9 @@ return function(args)
         print(CODE[res.code])
         return
     end
-    util.printr(res.body)
+    log.info(res.body)
     local path = shell.resolve(args[2])
     fs.makeDir(path)
-    ccutil.saveDir(path, res.body)
+    local pkg = pkg:fromTable(res.body)
+    pkg:save(path)
 end
