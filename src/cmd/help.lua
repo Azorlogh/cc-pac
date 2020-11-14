@@ -1,6 +1,6 @@
 local HELP = " \
-<pkg> is a package directory. \
-<name>: package name (server). \
+<pkg>: package directory \
+<name>: package name (server) \
 pac help \
   Display this message. \
 pac list \
@@ -9,7 +9,7 @@ pac info <name> \
   Display info on <name>. \
 pac install (name | -l pkg) \
   <name> from server, \
-  or local dir <pkg> \
+  or local dir <pkg>. \
 pac uninstall <name> \
   Uninstall <name>. \
 pac upload <pkg> \
