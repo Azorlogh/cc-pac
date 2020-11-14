@@ -1,4 +1,5 @@
 local CODE = require("code")
+local ccutil = require("modules.ccutil")
 local db = require("db")
 local json = require("modules.json")
 local pkg = require("pkg")
@@ -27,7 +28,7 @@ local function installLocal(name)
 end
 
 local function installOnline(name)
-    rednet.open(config.side)
+    ccutil.rednetOpenAny()
     local srv = rednet.lookup("pac-get-req", config.server)
     local db = db:load()
     local new_files = {} -- to check for conflicts

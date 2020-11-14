@@ -1,4 +1,5 @@
 local log = require("modules.log")
+local ccutil = require("modules.ccutil")
 local CODE = require("code")
 local pkg = require("pkg")
 
@@ -8,7 +9,7 @@ return function(args)
         log.error("path is not a directory")
     end
     local pkg = pkg:fromDir(path)
-    rednet.open(config.side)
+    ccutil.rednetOpenAny()
     local srv = rednet.lookup("pac-upload-req", config.server)
     
     -- check if already there

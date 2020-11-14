@@ -19,7 +19,7 @@ local methods = {
 }
 
 function server:run()
-    rednet.open(config.side)
+    ccutil.rednetOpenAny()
     rednet.host("pac-list-req", "pac.io")
     rednet.host("pac-info-req", "pac.io")
     rednet.host("pac-get-req", "pac.io")

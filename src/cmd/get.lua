@@ -5,7 +5,7 @@ local log = require("modules.log")
 local pkg = require("pkg")
 
 return function(args)
-    rednet.open(config.side)
+    ccutil.rednetOpenAny()
     local id = rednet.lookup("pac-get-req", config.server)
     rednet.send(id, args[1], "pac-get-req")
     local _, res = rednet.receive("pac-get-res")
@@ -14,7 +14,7 @@ return function(args)
         return
     end
     log.info(res.body)
-    local path = shell.resolve(args[2])
+    local path = shell.resolve(args[2] or args[1])
     fs.makeDir(path)
     local pkg = pkg:fromTable(res.body)
     pkg:save(path)

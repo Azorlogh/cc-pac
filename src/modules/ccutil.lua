@@ -1,5 +1,14 @@
 local util = {}
 
+function util.rednetOpenAny()
+    rednet.open("bottom")
+    rednet.open("top")
+    rednet.open("back")
+    rednet.open("front")
+    rednet.open("right")
+    rednet.open("left")
+end
+
 function util.loadDir(path)
     local data = {}
     local items = fs.list(path)
