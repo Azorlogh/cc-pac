@@ -6,7 +6,7 @@ local pkg = require("pkg")
 return function(args)
     local path = shell.resolve(args[1])
     if not fs.isDir(path) then
-        log.error("path is not a directory")
+        log.error("Path is not a directory.")
     end
     local pkg = pkg:fromDir(path)
     ccutil.rednetOpenAny()
@@ -32,5 +32,5 @@ return function(args)
         log.error(CODE[res.code])
         return
     end
-    log.debug("Successfully uploaded package")
+    log.debug("Successfully uploaded package.")
 end

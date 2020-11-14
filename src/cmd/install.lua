@@ -22,8 +22,8 @@ local function installLocal(name)
             return
         end
     end
-    log.info("dependencies all installed")
-    log.debug("installing...")
+    log.debug("dependencies all installed")
+    log.info("installing...")
     db:install(pkg)
 end
 
@@ -36,13 +36,13 @@ local function installOnline(name)
     local must_resolve = {name} -- already?deps?
     while #must_resolve > 0 do
         local name = table.remove(must_resolve)
-        log.debug("resolving "..name)
+        log.info("resolving "..name)
         if not db:is_installed(name) then
-            log.debug("is not installed")
+            log.info("is not installed")
             rednet.send(srv, name, "pac-get-req")
             local _, res = rednet.receive()
             if res.code ~= CODE.OK then
-                log.error("couldn't fetch dependency: "..name)
+                log.error("couldn't fetch package: "..name)
                 return
             end
             log.debug("acquired package from server")
@@ -67,7 +67,7 @@ local function installOnline(name)
     
     for i=#pkgs, 1, -1 do
         local pkg = pkgs[i]
-        log.debug("Installing "..pkg.meta.name.."...")
+        log.info("Installing "..pkg.meta.name.."...")
         local explicit = pkg.meta.name == name
         db:install(pkg, explicit)
     end

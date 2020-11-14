@@ -19,10 +19,11 @@ local cmds = {
     get = require("cmd.get"),
     install = require("cmd.install"),
     uninstall = require("cmd.uninstall"),
-    upload = require("cmd.upload")
+    upload = require("cmd.upload"),
+    help = require("cmd.help")
 }
 
-log.set_debug()
+log.set_info()
 
 local args = {...}
 for i=#args, 1, -1 do

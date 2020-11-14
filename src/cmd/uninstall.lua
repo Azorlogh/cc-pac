@@ -1,20 +1,21 @@
 local db = require("db")
+local log = require("modules.log")
 
 return function(args)
     local name = args[1]
     local db = db:load()
     if not db:is_installed(name) then
-        print("Package "..name.." is not installed")
+        log.error("Package "..name.." is not installed.")
         return
     end
     write("Uninstall "..name.."? [Y/n] ")
     local ans = read()
     if ans ~= "" and ans ~= "y" and ans ~= "Y" then
-        print("Keeping package")
+        log.warn("Keeping package")
         return
     end
     db:uninstall(name)
-    print("Successfully uninstalled "..name)
+    log.info("Successfully uninstalled "..name)
     
     local finished = false
     while not finished do
