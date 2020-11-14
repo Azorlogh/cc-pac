@@ -4,14 +4,17 @@ function util.rednetOpenAny()
     local function try(side)
         if peripheral.getType(side) == "modem" then
             rednet.open(side)
+            return true
         end
+        return false
     end
-    try("bottom")
-    try("top")
-    try("back")
-    try("front")
-    try("right")
-    try("left")
+    if try("bottom") then return end
+    if try("top") then return end
+    if try("back") then return end
+    if try("front") then return end
+    if try("right") then return end
+    if try("left") then return end
+    print("couldn't find modem")
 end
 
 function util.loadDir(path)
