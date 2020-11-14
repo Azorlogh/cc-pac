@@ -50,6 +50,8 @@ elseif cmd == "uninstall" then
     cmds.uninstall(args)
 elseif cmd == "upload" then
     cmds.upload(args)
+elseif cmd == "help" then
+    cmds.help(args)
 else
     print("Unknown command: "..cmd)
 end
