@@ -71,6 +71,8 @@ local function installOnline(name)
         local explicit = pkg.meta.name == name
         db:install(pkg, explicit)
     end
+
+    log.info("Installed "..name.." successfully!")
 end
 
 return function(args)
