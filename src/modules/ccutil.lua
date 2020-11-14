@@ -1,12 +1,17 @@
 local util = {}
 
 function util.rednetOpenAny()
-    rednet.open("bottom")
-    rednet.open("top")
-    rednet.open("back")
-    rednet.open("front")
-    rednet.open("right")
-    rednet.open("left")
+    local function try(side)
+        if peripheral.getType(side) == "modem" then
+            rednet.open(side)
+        end
+    end
+    try("bottom")
+    try("top")
+    try("back")
+    try("front")
+    try("right")
+    try("left")
 end
 
 function util.loadDir(path)
