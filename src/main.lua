@@ -55,3 +55,5 @@ elseif cmd == "help" then
 else
     print("Unknown command: "..cmd)
 end
+
+rednet.close()
