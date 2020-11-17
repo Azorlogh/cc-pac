@@ -7,7 +7,7 @@ return function(args)
             serv:run()
         end,
         function()
-            print("press enter to stop")
+            log.info("press enter to stop")
             io.read()
         end
     )

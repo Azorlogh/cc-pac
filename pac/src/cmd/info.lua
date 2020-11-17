@@ -1,6 +1,7 @@
 local util = require("modules.util")
 local ccutil = require("modules.ccutil")
 local CODE = require("code")
+local log = require("log")
 
 return function(args)
     ccutil.rednetOpenAny()
@@ -8,7 +9,7 @@ return function(args)
     rednet.send(id, args[1], "pac-info-req")
     local _, res = rednet.receive("pac-info-res")
     if res.code ~= 0 then
-        print(CODE[res.code])
+        log.error(CODE[res.code])
         return
     end
     util.printr(res.body)

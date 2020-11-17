@@ -3,8 +3,8 @@ local log = require("modules.log")
 
 return function(args)
     local name = args[1]
-    local db = db:load()
-    if not db:is_installed(name) then
+    local db = Db:load()
+    if not db:isInstalled(name) then
         log.error("Package "..name.." is not installed.")
         return
     end

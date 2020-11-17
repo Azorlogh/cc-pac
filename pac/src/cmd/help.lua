@@ -17,5 +17,5 @@ pac upload <pkg> \
 "
 
 return function()
-    print(HELP)
+    log.info(HELP)
 end

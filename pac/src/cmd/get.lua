@@ -10,7 +10,7 @@ return function(args)
     rednet.send(id, args[1], "pac-get-req")
     local _, res = rednet.receive("pac-get-res")
     if res.code ~= 0 then
-        print(CODE[res.code])
+        log.error(CODE[res.code])
         return
     end
     log.info(res.body)

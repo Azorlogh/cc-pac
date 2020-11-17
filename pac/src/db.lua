@@ -2,10 +2,10 @@ local log = require("modules.log")
 local ccutil = require("modules.ccutil")
 local json = require("modules.json")
 
-local db = {}
-db.__index = db
+local Db = {}
+Db.__index = Db
 
-function db:load()
+function Db:load()
     local f = fs.open(DB_PATH, "r")
     local t
     if f then
@@ -23,21 +23,21 @@ function db:load()
     return t
 end
 
-function db:save()
+function Db:save()
     local f = fs.open(DB_PATH, "w")
     f.write(json.encode(self))
     f.close()
 end
 
-function db:is_installed(name)
+function Db:getInstalled()
+
+end
+
+function Db:isInstalled(name)
     return self.pkgs[name] ~= nil
 end
 
-function db:add_pkg_holder(name, parent)
-    table.insert(self.pkg_holders[name], parent)
-end
-
-function db:install(pkg, explicit)
+function Db:install(pkg, explicit)
     local name = pkg.meta.name
     self.pkgs[name] = {
         contents = {},
@@ -64,7 +64,7 @@ function db:install(pkg, explicit)
     self:save()
 end
 
-function db:uninstall(name)
+function Db:uninstall(name)
     local pkg = self.pkgs[name]
     local contents = pkg.contents
     
@@ -106,7 +106,7 @@ function db:uninstall(name)
     self:save()
 end
 
-function db:orphans()
+function Db:orphans()
     local orphans = {}
     for k, v in pairs(self.pkg_holders) do
         if #v == 0 and not self.pkgs[k].explicit then

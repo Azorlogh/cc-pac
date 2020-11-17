@@ -14,7 +14,7 @@ local function installLocal(name)
     end
     log.debug("successfully parsed package")
     log.trace(pkg)
-    local db = db:load()
+    local db = Db:load()
     for _, dep in ipairs(pkg.meta.deps or {}) do
         log.trace("checking dependency: "..dep)
         if not db:is_installed(dep) then
@@ -30,14 +30,14 @@ end
 local function installOnline(name)
     ccutil.rednetOpenAny()
     local srv = rednet.lookup("pac-get-req", config.server)
-    local db = db:load()
+    local db = Db:load()
     local new_files = {} -- to check for conflicts
     local pkgs = {} -- cached packages
     local must_resolve = {name} -- already?deps?
     while #must_resolve > 0 do
         local name = table.remove(must_resolve)
         log.info("resolving "..name)
-        if not db:is_installed(name) then
+        if not db:isInstalled(name) then
             log.info("is not installed")
             rednet.send(srv, name, "pac-get-req")
             local _, res = rednet.receive()
