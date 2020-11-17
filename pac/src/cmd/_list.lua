@@ -3,25 +3,12 @@ local ccutil = require("modules.ccutil")
 local CODE = require("code")
 local log = require("modules.log")
 
-return function(args)
-    local installed = false
-    for _, arg in ipairs(args) do
-        if arg == "-i" or "--installed" then
-            installed = true
-        end
-    end
-
-    if installed then
-        listInstalled()
-    else
-        listServerPackages()
-    end
-end
-
 function listInstalled()
     local db = Db:load()
     log.info(db:getInstalled())
 end
+
+function listServerPackages()
     ccutil.rednetOpenAny()
     local id = rednet.lookup("pac-list-req", config.server)
     rednet.send(id, nil, "pac-list-req")
@@ -31,4 +18,18 @@ end
         return
     end
     log.info(res.body)
+end
+
+return function(args)
+    local installed = false
+    for _, arg in ipairs(args) do
+        if arg == "-i" or "--installed" then
+            installed = true
+        end
+    end
+    if installed then
+        listInstalled()
+    else
+        listServerPackages()
+    end
 end
