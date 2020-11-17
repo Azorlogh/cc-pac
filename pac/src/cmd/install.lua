@@ -1,6 +1,6 @@
 local CODE = require("code")
 local ccutil = require("modules.ccutil")
-local db = require("db")
+local Db = require("db")
 local json = require("modules.json")
 local pkg = require("pkg")
 local log = require("modules.log")

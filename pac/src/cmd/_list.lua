@@ -2,10 +2,12 @@ local util = require("modules.util")
 local ccutil = require("modules.ccutil")
 local CODE = require("code")
 local log = require("modules.log")
+local Db = require("db")
 
 function listInstalled()
     local db = Db:load()
-    log.info(db:getInstalled())
+    log.info("Packages installed on device:")
+    util.printr(db:getInstalled())
 end
 
 function listServerPackages()
@@ -17,7 +19,8 @@ function listServerPackages()
         log.error(CODE[res.code])
         return
     end
-    log.info(res.body)
+    log.info("Packages hosted on server:")
+    util.printr(res.body)
 end
 
 return function(args)

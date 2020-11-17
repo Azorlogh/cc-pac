@@ -1,4 +1,4 @@
-local db = require("db")
+local Db = require("db")
 local log = require("modules.log")
 
 return function(args)
