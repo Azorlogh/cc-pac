@@ -1,7 +1,7 @@
 local util = require("modules.util")
 local ccutil = require("modules.ccutil")
 local CODE = require("code")
-local log = require("log")
+local log = require("modules.log")
 
 return function(args)
     ccutil.rednetOpenAny()
