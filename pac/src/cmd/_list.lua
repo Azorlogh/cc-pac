@@ -19,7 +19,7 @@ function listServerPackages()
         log.error(CODE[res.code])
         return
     end
-    local out = "Packages hosted on server:"
+    local out = "Packages on server:"
     for _, name in ipairs(res.body) do
         rednet.send(id, name, "pac-info-req")
         local _, res = rednet.receive("pac-info-res")
