@@ -20,7 +20,15 @@ function listServerPackages()
         return
     end
     log.info("Packages hosted on server:")
-    util.printr(res.body)
+    for _, name in ipairs(res.body) do
+        rednet.send(id, name, "pac-info-req")
+        local _, res = rednet.receive("pac-info-res")
+        if res.code ~= 0 then
+            log.error("couldn't fetch package info: "..name)
+        else
+            log.info(name..": "..(res.desc or ""))
+        end
+    end
 end
 
 return function(args)
