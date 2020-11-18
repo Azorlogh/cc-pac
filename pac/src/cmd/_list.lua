@@ -26,8 +26,8 @@ function listServerPackages()
         out = out.."\n"
         if res.code ~= 0 then
             log.error("couldn't fetch package info: "..name)
-        elseif res.desc then
-            out = out..name..": "..res.desc
+        elseif res.body.desc then
+            out = out..name..": "..res.body.desc
         else
             out = out..name
         end
