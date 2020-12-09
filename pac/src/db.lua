@@ -30,7 +30,11 @@ function Db:save()
 end
 
 function Db:getInstalled()
-
+    local names = {}
+    for name, _ in pairs(self.pkgs) do
+        table.insert(names, name)
+    end
+    return names
 end
 
 function Db:isInstalled(name)
