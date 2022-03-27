@@ -1,4 +1,5 @@
 local server = require("server.mod")
+local log = require("modules.log")
 
 return function(args)
     local serv = server:new()

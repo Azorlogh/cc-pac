@@ -6,7 +6,7 @@ local log = require("modules.log")
 
 return function(msg)
     log.debug("req: info "..msg)
-    local path = msg:gsub("%.",""):gsub("%.","")
+    local path = msg:gsub("%.",""):gsub("%/","")
     if msg ~= path then -- name contains . or /
         return {
             code = CODE.INVALID_PACKAGE,

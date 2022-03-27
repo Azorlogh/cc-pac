@@ -1,3 +1,5 @@
+local log = require("modules.log")
+
 local HELP = " \
 <pkg>: package directory \
 <name>: package name (server) \
